@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assessment | OES</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="brand">Live Assessment Module</div>
+    <div class="nav-timer" id="timer-box" style="display: block;">
+      Time Remaining: <span id="timer">60</span>s
+    </div>
+  </nav>
+
+  <div class="container" style="align-items: stretch;">
+    <div id="questions-loader" style="text-align: center; margin: 5rem 0;">
+      <h2 style="color: var(--text-dim); animation: pulse 1.5s infinite;">Loading Encrypted Questions...</h2>
+    </div>
+    
+    <div id="questions" style="display: none;"></div>
+    
+    <div id="submit-section" style="display: none; text-align: right; margin-top: 1rem;">
+      <button class="btn" onclick="submitExam()" style="padding: 1rem 3rem; font-size: 1.1rem; background: var(--success);">Finalize & Submit</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Security check
+    if (!localStorage.getItem("token")) {
+      window.location = "login.html";
+    }
+  </script>
+</body>
+</html>

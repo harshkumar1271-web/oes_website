@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Results | OES</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="brand" onclick="window.location='login.html'">OES Evaluation</div>
+    <div class="nav-links">
+      <a onclick="logout()" class="nav-link">Logout</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="glass-panel" style="text-align: center; width: 100%; max-width: 600px; padding: 4rem 2rem;">
+      <h2 style="margin-bottom: 2rem; color: #f8fafc; font-size: 2rem;">Assessment Complete</h2>
+      
+      <div class="result-circle" id="result-ui" style="--progress: 0%;">
+        <div class="result-content">
+          <div class="score" id="score-text">0</div>
+          <div class="percent">Score Achieved</div>
+        </div>
+      </div>
+
+      <p id="percent-text" style="font-size: 1.2rem; color: var(--text-dim); margin-bottom: 2rem;"></p>
+
+      <button class="btn btn-outline" onclick="window.location='exam.html'">Retake Assessment</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

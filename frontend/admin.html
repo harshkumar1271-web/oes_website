@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | OES</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="brand">OES Admin Protocol</div>
+    <div class="nav-links">
+      <a onclick="logout()" class="nav-link">Logout</a>
+    </div>
+  </nav>
+
+  <div class="container" style="max-width: 1000px;">
+    
+    <div class="glass-panel" style="margin-bottom: 2rem;">
+      <div class="admin-tabs">
+        <button id="add-tab-btn" class="tab-btn active" onclick="showTab('add-tab', this)">Add Question</button>
+        <button id="q-list-tab-btn" class="tab-btn" onclick="showTab('q-list-tab', this); fetchAdminQuestions();">Question Bank</button>
+        <button id="results-tab-btn" class="tab-btn" onclick="showTab('results-tab', this); fetchAdminResults();">Student Results</button>
+      </div>
+    </div>
+
+    <!-- TAB 1: ADD QUESTION -->
+    <div id="add-tab" class="tab-content active">
+      <div class="glass-panel">
+        <h2 id="form-title">Add New Question</h2>
+        <p style="color: var(--text-dim); margin-bottom: 2rem;">Questions will be added to the MongoDB Database securely.</p>
+        
+        <input type="hidden" id="edit-id"> 
+        
+        <div class="admin-grid">
+          <div class="form-group" style="grid-column: 1 / -1;">
+            <label>Question Statement</label>
+            <input type="text" id="q" placeholder="What is the capital of France?">
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label>Option 1</label>
+              <input type="text" id="o1" placeholder="Berlin">
+            </div>
+            <div class="form-group">
+              <label>Option 2</label>
+              <input type="text" id="o2" placeholder="Madrid">
+            </div>
+            <div class="form-group">
+              <label>Option 3</label>
+              <input type="text" id="o3" placeholder="Paris">
+            </div>
+            <div class="form-group">
+              <label>Option 4</label>
+              <input type="text" id="o4" placeholder="Rome">
+            </div>
+          </div>
+
+          <div class="form-group" style="grid-column: 1 / -1; margin-top: 1rem;">
+            <label style="color: #60a5fa; font-weight: 600;">Correct Answer (Must match exactly one option)</label>
+            <input type="text" id="ans" placeholder="Paris" style="border-color: rgba(96, 165, 250, 0.5);">
+          </div>
+
+          <div style="grid-column: 1 / -1; display: flex; gap: 1rem;">
+            <button id="submit-btn" class="btn btn-block" onclick="handleQuestionSubmit(event)" style="margin-top: 0;">Add Question to Bank</button>
+            <button id="cancel-btn" class="btn btn-outline btn-block hidden" onclick="cancelEdit()" style="margin-top: 0;">Cancel Edit</button>
+          </div>
+          <p id="msg" class="msg"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: QUESTION LIST -->
+    <div id="q-list-tab" class="tab-content">
+      <div class="glass-panel">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+          <h2>Question Bank</h2>
+          <span id="q-count" class="badge">0 Questions</span>
+        </div>
+        <div id="admin-q-list" class="admin-list">
+          <p>Loading questions...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: RESULTS -->
+    <div id="results-tab" class="tab-content">
+      <div class="glass-panel">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+          <h2>Student Results</h2>
+          <span id="res-count" class="badge">0 Records</span>
+        </div>
+        <div class="table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Student Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Score</th>
+                <th>Percent</th>
+                <th>Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="admin-res-list">
+              <tr><td colspan="5" style="text-align:center;">Loading results...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Verify admin access on load
+    if (localStorage.getItem("role") !== "admin") {
+      window.location = "login.html";
+    }
+
+    function showTab(id, btn) {
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      
+      // If btn is passed, use it, otherwise find the corresponding button by ID
+      const targetBtn = btn || document.getElementById(id + '-btn');
+      if (targetBtn) targetBtn.classList.add('active');
+    }
+  </script>
+</body>
+</html>

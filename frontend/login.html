@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | OES</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="brand" onclick="window.location='Homepage.html'">OES Gateway</div>
+  </nav>
+
+  <div class="container">
+    <div class="glass-panel form-container">
+      
+      <!-- Login Form -->
+      <div id="login-section">
+        <h2>Welcome Back</h2>
+        <p style="color: var(--text-dim); margin-bottom: 2rem;">Please sign in to continue</p>
+        
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="login-email" placeholder="you@example.com">
+        </div>
+        
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="login-password" placeholder="••••••••">
+        </div>
+        
+        <button class="btn btn-block" onclick="login(event)">Login to Account</button>
+        <p id="login-msg" class="msg"></p>
+
+        <div class="toggle-form">
+          New here? <span onclick="toggleAuthMode()">Create an account</span>
+        </div>
+      </div>
+
+      <!-- Signup Form (Hidden initially) -->
+      <div id="signup-section" class="hidden">
+        <h2>Create Account</h2>
+        <p style="color: var(--text-dim); margin-bottom: 2rem;">Join OES as a student</p>
+        
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="signup-name" placeholder="John Doe">
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="signup-email" placeholder="you@example.com">
+        </div>
+
+        <div class="form-group">
+          <label>Mobile Number</label>
+          <input type="text" id="signup-mobile" placeholder="+91 1234567890">
+        </div>
+        
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="signup-password" placeholder="••••••••">
+        </div>
+        
+        <button class="btn btn-block" onclick="signup(event)">Sign Up</button>
+        <p id="signup-msg" class="msg"></p>
+
+        <div class="toggle-form">
+          Already have an account? <span onclick="toggleAuthMode()">Login instead</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Online Exam</title>
+  <link rel="stylesheet" href="login.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Login</h2>
+    <form onsubmit="return loginUser(event)">
+      <label for="role">Select Role:</label>
+      <select id="role" required>
+        <option value="student">Student</option>
+        <option value="admin">Admin</option>
+      </select>
+
+      <label>Username:</label>
+      <input type="text" id="username" required>
+
+      <label>Password:</label>
+      <input type="password" id="password" required>
+
+      <button type="submit">Login</button>
+    </form>
+  </div>
+</body>
+</html>
